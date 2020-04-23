@@ -1,13 +1,13 @@
 import { createStore, combineReducers } from 'redux';
-import { hogeReducer, HogeState } from './states/hogeState';
+import { todoListReducers, TodoListState } from './states/todoListState';
 
 export type AppState = {
-  hoge: HogeState
+  todoList: TodoListState
 };
 
 const store = createStore(
   combineReducers<AppState>({
-    hoge: hogeReducer
+    todoList: todoListReducers
   })
 );
 
