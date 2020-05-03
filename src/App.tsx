@@ -1,12 +1,10 @@
 import React from 'react';
-import TodoListContainer from './containers/TodoListContainer';
+import TopPage from './components/TopPage';
 
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <TodoListContainer />
-      </div>
+      <TopPage />
     );
   }
 }

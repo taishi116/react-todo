@@ -21,9 +21,9 @@ import { Todo } from "./index"
 // }
 // 理由としてはidはaddTodo関数内部で付与するから
 // 引数としてわたされたtodoの中のidは使用しない
-export default async (todo: Omit<Todo, "id">) => {
+export default async (todo: Omit<Todo, "id">): Promise<Todo> => {
     // localStorageの中から一回全部打ち抜いてくる
-    // 1. 被らないか確認するため
+    // 1. 被らないか確認するためZ
     const prevTodoList = await getTodoList();
 
     // ランダムなIDを追加
@@ -37,13 +37,17 @@ export default async (todo: Omit<Todo, "id">) => {
         }
     }
 
+    const newTodo = { ...todo, id };
+
     // 全体のものに一つ付与
-    const todoList = prevTodoList.concat({ ...todo, id });
+    const todoList = prevTodoList.concat(newTodo);
 
     // Jsonに変換
     const todoListValue = JSON.stringify(todoList);
     // Jsonに変換したのをlocalStorageに反映
     localStorage.setItem("todoList", todoListValue);
+
+    return newTodo;
 }
 
 // // before
